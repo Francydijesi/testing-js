@@ -73,6 +73,7 @@ function findWinner() {
     if (board[0] === cell && board[8] === cell) {
         return cell;
     }
+    
 }
 
 

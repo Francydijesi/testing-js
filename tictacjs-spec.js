@@ -43,14 +43,40 @@ describe("Tic Tac JS", function () {
         expect(placePiece(0,'X')).toBeFalsy();
         expect(placePiece(1,'O')).toBeTruthy();
     });
+    
+    it("should be able to determine a winner", function(){
+        board = ["X", "X", "X", null, null, null, null, null, null];
+        expect(findWinner()).toBe("X");
+        board = ["X", "O", "X", null, "O", null, null, "O", null];
+        expect(findWinner()).toBe("O");
+        board = ["X", "O", "X", null, null, null, null, null, null];
+        expect(findWinner()).toBe(null);
+    });
+
+    it("should not determine a winner when there is a tie", function(){
+       board = ["X", "O", "X", "O", "X", "O", "O", "X", "O"];
+       expect(findWinner()).toBeFalsy();
+       expect(isBoardFull()).toBeTruthy();
+    });
+    
+    it("should be able to deduce the correct cell number", function(){
+        cell = 5;
+        initializeBoard();
+        makeHumanMove(cell);
+        expect(board[5]).toBe("X");
+    });
+    
+
+    it("it should be able to declare a tie and end the game", function(){
+       board = ["X", "O", "X", "O", "X", "O", "O", "X", "O"];
+       expect(checkGameOver()).toBeTruthy();
+    });
+   
     // END STEP 2
 
     // Add the following tests, or think of some of your own.
+       
     
-    
-    // it should be able to determine a winner
-    // it should not determine a winner when there is a tie
-    // it should be able to deduce the correct cell number
     // it should be able to declare a tie and end the game
 
 });
